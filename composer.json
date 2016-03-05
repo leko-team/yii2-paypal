@@ -1,0 +1,30 @@
+{
+    "name": "leko-team/yii2-paypal",
+    "description": "The PayPal extension for the Yii2 framework",
+    "keywords": ["yii2", "paypal"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/leko-team/yii2-paypal/issues",
+        "source": "https://github.com/leko-team/yii2-paypal"
+    },
+    "authors": [
+        {
+            "name": "Leko Team",
+            "email": "hello@leko.team"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "paypal/rest-api-sdk-php": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "leko\\paypal\\": ""
+        }
+    }
+}
