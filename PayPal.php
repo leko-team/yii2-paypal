@@ -23,7 +23,7 @@ use PayPal\Rest\ApiContext;
 /**
  * 
  */
-class Paypal extends yii\base\Component
+class PayPal extends yii\base\Component
 {
     /**
      * Modes 
