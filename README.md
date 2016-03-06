@@ -27,7 +27,7 @@ $ composer update
 * add to your Yii2 config file this part with component settings:
 ```php
 'paypal' => [
-    'class'        => 'leko\paypal',
+    'class'        => 'leko\paypal\PayPal',
     'clientId'     => 'you_client_id',
     'clientSecret' => 'you_client_secret',
     'isProduction' => false,
