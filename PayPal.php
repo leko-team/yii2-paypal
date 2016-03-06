@@ -21,46 +21,113 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
 /**
+ * @todo make description
  * 
+ * PayPal class
  */
 class PayPal extends yii\base\Component
 {
     /**
-     * Modes 
-     *     - production
-     *     - development
+     * Payment modes.
+     *
+     * Mode production.
+     * 
+     * @var string
      */
     const MODE_SANDBOX = 'sandbox';
+
+    /**
+     * Mode development.
+     * 
+     * @var string
+     */
     const MODE_LIVE    = 'live';
 
     /**
-     * Log levels
+     * @todo make description
+     * 
+     * Log levels.
+     * 
      * Logging level can be one of FINE, INFO, WARN or ERROR.
      * Logging is most verbose in the 'FINE' level and decreases as you proceed towards ERROR.
+     *
+     * Level "fine".
+     *
+     * @var string
      */
     const LOG_LEVEL_FINE  = 'FINE';
+
+    /**
+     * Level "info".
+     *
+     * @var string
+     */
     const LOG_LEVEL_INFO  = 'INFO';
+
+    /**
+     * Level "warn".
+     *
+     * @var string
+     */
     const LOG_LEVEL_WARN  = 'WARN';
+
+    /**
+     * Level "error".
+     *
+     * @var string
+     */
     const LOG_LEVEL_ERROR = 'ERROR';
 
     /**
-     * API settings
+     * @todo make description
+     * 
+     * API settings.
+     *
+     * Client ID.
+     *
+     * @var string
      */
     public $clientId;
+
+    /**
+     * Client secret key.
+     * 
+     * @var string
+     */
     public $clientSecret;
+
+    /**
+     * Application mode type.
+     * 
+     * @var boolean
+     */
     public $isProduction = false;
+
+    /**
+     * Payment currency code.
+     * 
+     * @var string
+     */
     public $currency = 'USD';
+
+    /**
+     * Array of params.
+     * 
+     * @var array
+     */
     public $config = [];
 
     /**
-     * ApiContext
+     * @todo make description
+     * 
+     * ApiContext.
+     * 
      * @var null
      */
     private $_apiContext = null;
 
     /**
-     * @setConfig 
-     * _apiContext in init() method
+     * Model initialization.
      */
     public function init()
     {
@@ -68,7 +135,11 @@ class PayPal extends yii\base\Component
     }
 
     /**
+     * @todo make description
+     * 
      * @inheritdoc
+     *
+     * @return [type] [<description>]
      */
     private function setConfig()
     {
@@ -88,18 +159,16 @@ class PayPal extends yii\base\Component
         // Comment this line out and uncomment the PP_CONFIG_PATH
         // 'define' block if you want to use static file
         // based configuration
-        $this->_apiContext->setConfig(ArrayHelper::merge(
-            [
-                'mode'                      => self::MODE_SANDBOX, // development (sandbox) or production (live) mode
-                'http.ConnectionTimeOut'    => 30,
-                'http.Retry'                => 1,
-                'log.LogEnabled'            => YII_DEBUG ? 1 : 0,
-                'log.FileName'              => Yii::getAlias('@runtime/logs/paypal.log'),
-                'log.LogLevel'              => self::LOG_LEVEL_FINE,
-                'validation.level'          => 'log',
-                'cache.enabled'             => 'true'
-            ],$this->config)
-        );
+        $this->_apiContext->setConfig(ArrayHelper::merge([
+            'mode'                      => self::MODE_SANDBOX, // development (sandbox) or production (live) mode
+            'http.ConnectionTimeOut'    => 30,
+            'http.Retry'                => 1,
+            'log.LogEnabled'            => YII_DEBUG ? 1 : 0,
+            'log.FileName'              => Yii::getAlias('@runtime/logs/paypal.log'),
+            'log.LogLevel'              => self::LOG_LEVEL_FINE,
+            'validation.level'          => 'log',
+            'cache.enabled'             => 'true'
+        ], $this->config));
 
         // Set file name of the log if present
         if (isset($this->config['log.FileName'])
@@ -120,7 +189,11 @@ class PayPal extends yii\base\Component
     }
 
     /**
-     * Demo
+     * @todo make description
+     * 
+     * Demo payment.
+     *
+     * @return [type] [<description>]
      */
     public function payDemo()
     {
